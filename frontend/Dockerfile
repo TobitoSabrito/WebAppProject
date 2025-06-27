@@ -2,11 +2,11 @@
 FROM node:20-alpine AS build
 WORKDIR /app
 
-# Sadece gerekli dosyaları kopyala
-COPY package.json package-lock.json ./
+# Sadece package.json'u kopyala
+COPY package.json ./
 
-# node_modules ve lockfile sorunlarını önlemek için temiz kurulum
-RUN npm ci || npm install
+# Linux ortamında lockfile oluştur
+RUN npm install
 
 # Uygulama kaynaklarını kopyala
 COPY . .
